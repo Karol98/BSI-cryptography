@@ -7,19 +7,34 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
+/***
+ * @author Mario Gliwa
+ */
 public class TripleDES {
 
+    /***
+     *  This is a program for encrypt and decrypt a text
+     * @param args the command line arguments
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
-        String text = "kyle boon";
+        String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "; // this is a text which will be encrypt and decrypt
 
         byte[] codedtext = new TripleDES().encrypt(text);
         String decodedtext = new TripleDES().decrypt(codedtext);
 
         System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
-        System.out.println(decodedtext); // This correctly shows "kyle boon"
+        System.out.println(decodedtext); // This correctly shows "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
     }
 
+    /***
+     * method which encrypting text
+     * @param message the message which will be encrypt
+     * @return byte table with text which is encrypted
+     * @throws Exception
+     */
+    
     public byte[] encrypt(String message) throws Exception {
         final MessageDigest md = MessageDigest.getInstance("md5");
         final byte[] digestOfPassword = md.digest("HG58YZ3CR9"
@@ -42,6 +57,12 @@ public class TripleDES {
         return cipherText;
     }
 
+    /***
+     * method which decrypting text
+     * @param message the message which will be decrypt
+     * @return byte table with decrypted text
+     * @throws Exception
+     */
     public String decrypt(byte[] message) throws Exception {
         final MessageDigest md = MessageDigest.getInstance("md5");
         final byte[] digestOfPassword = md.digest("HG58YZ3CR9"
@@ -55,10 +76,11 @@ public class TripleDES {
         final IvParameterSpec iv = new IvParameterSpec(new byte[8]);
         final Cipher decipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
         decipher.init(Cipher.DECRYPT_MODE, key, iv);
+                                                                                       
         // final byte[] encData = new
         // sun.misc.BASE64Decoder().decodeBuffer(message);
         final byte[] plainText = decipher.doFinal(message);
-
         return new String(plainText, "UTF-8");
     }
 }
+
