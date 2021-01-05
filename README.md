@@ -1,6 +1,6 @@
 # BSI-cryptography
 
-Compare times algorithms
+Compared times algorithms
 
 Tested text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 
