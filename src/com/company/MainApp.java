@@ -38,7 +38,7 @@ public class MainApp {
         System.out.println("|        2. AES encryption/decryption               |");
         System.out.println("|        3. DES encryption/decryption               |");
         System.out.println("|        4. RSA encryption/decryption               |");
-        System.out.println("|        5. RES encryption/decryption               |");
+        System.out.println("|        5. DSA encryption/decryption               |");
         System.out.println("|        6. Race                                    |");
         System.out.println("=====================================================");
         swValue = Keyin.inInt(TextColor.GREEN + " Select option: ");
