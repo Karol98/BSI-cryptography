@@ -1,5 +1,7 @@
 package com.company.Algorithms;
 
+import com.company.Menu.TextColor;
+
 import javax.crypto.Cipher;
 import java.io.InputStream;
 import java.security.*;
@@ -90,12 +92,13 @@ public class RsaExample {
     }
 
     public static void main() throws Exception {
+        long startTime = System.nanoTime();
         //First generate a public/private key pair
         KeyPair pair = generateKeyPair();
         //KeyPair pair = getKeyPairFromKeyStore();
 
         //Our secret message
-        String message = "the answer to life the universe and everything";
+        String message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
 
         System.out.println(message);
 
@@ -113,5 +116,9 @@ public class RsaExample {
         //Let's check the signature
         boolean isCorrect = verify("foobar", signature, pair.getPublic());
         System.out.println("Signature correct: " + isCorrect);
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(TextColor.BLUE+totalTime);
+        System.out.println(TextColor.RESET);
     }
 }

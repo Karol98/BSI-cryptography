@@ -1,4 +1,6 @@
 package com.company.Algorithms;
+import com.company.Menu.TextColor;
+
 import java.security.MessageDigest;
 import java.util.Arrays;
 
@@ -11,22 +13,23 @@ import javax.crypto.spec.SecretKeySpec;
  * @author Mario Gliwa
  */
 public class TripleDES {
-
     /***
      *  This is a program for encrypt and decrypt a text
-     * @param args the command line arguments
      * @throws Exception
      */
     public static void main() throws Exception {
+        long startTime = System.nanoTime();
         String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "; // this is a text which will be encrypt and decrypt
-
         byte[] codedtext = new TripleDES().encrypt(text);
         String decodedtext = new TripleDES().decrypt(codedtext);
         System.out.println(text);
         System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
         System.out.println(decodedtext); // This correctly shows "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(TextColor.BLUE+totalTime);
+        System.out.println(TextColor.RESET);
     }
-
     /***
      * method which encrypting text
      * @param message the message which will be encrypt

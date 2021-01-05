@@ -1,5 +1,7 @@
 package com.company.Algorithms;
 
+import com.company.Menu.TextColor;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,7 +18,8 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES {
 
     public static void main() {
-        final String secretKey = "ssshhhhhhhhhhh!!!!";
+        long startTime = System.nanoTime();
+        final String secretKey = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
 
         String originalString = "BSI-Cryptography";
         String encryptedString = AES.encrypt(originalString, secretKey) ;
@@ -25,6 +28,10 @@ public class AES {
         System.out.println(originalString);
         System.out.println(encryptedString);
         System.out.println(decryptedString);
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(TextColor.BLUE+totalTime);
+        System.out.println(TextColor.RESET);
     }
 
     private static SecretKeySpec secretKey;

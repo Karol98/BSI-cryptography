@@ -42,6 +42,7 @@ public class MainApp {
         System.out.println("|        6. Race                                    |");
         System.out.println("=====================================================");
         swValue = Keyin.inInt(TextColor.GREEN + " Select option: ");
+        System.out.println(TextColor.RESET);
 
         // Switch construct
         switch (swValue) {

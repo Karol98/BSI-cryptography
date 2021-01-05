@@ -1,4 +1,6 @@
 package com.company.Algorithms;
+import com.company.Menu.TextColor;
+
 import java.security.KeyPair;
 
 import java.security.KeyPairGenerator;
@@ -12,18 +14,15 @@ import java.util.Scanner;
  */
 public class DSA {
     public static void main() throws Exception {
+        long startTime = System.nanoTime();
         /**
         Accepting text from user
         */
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter some text");
-        String msg = sc.nextLine();
-
+        String msg = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ";
         /**
          *  Creating KeyPair generator object
          */
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("DSA");
-
         /**
          *  Initializing the key pair generator
          */
@@ -32,11 +31,9 @@ public class DSA {
          * Generate the pair of keys
          */
         KeyPair pair = keyPairGen.generateKeyPair();
-
         /**
          * Getting the private key from the key pair
          */
-
         PrivateKey privKey = pair.getPrivate();
         /**
          * Creating a Signature object
@@ -59,5 +56,9 @@ public class DSA {
          * Printing the signature
          */
         System.out.println("Digital signature for given text: "+new String(signature, "UTF8"));
+        long endTime   = System.nanoTime();
+        long totalTime = endTime - startTime;
+        System.out.println(TextColor.BLUE+totalTime);
+        System.out.println(TextColor.RESET);
     }
 }
