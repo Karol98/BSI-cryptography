@@ -9,7 +9,9 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-
+/**
+ * @Author Karol Skwierawski s18497
+ */
 
 public class AES {
 

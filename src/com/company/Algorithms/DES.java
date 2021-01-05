@@ -1,5 +1,9 @@
 package com.company.Algorithms;
 
+/**
+ * @Author Karol Skwierawski s18497
+ */
+
 public class DES {
     /** CONSTANTS
     Initial Permutation Table

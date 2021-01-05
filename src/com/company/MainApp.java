@@ -2,11 +2,12 @@ package com.company;
 
 import com.company.Algorithms.AES;
 import com.company.Algorithms.DES;
+import com.company.Algorithms.TripleDES;
 import com.company.Menu.Keyin;
 import com.company.Menu.TextColor;
 
 /**
- * Autors
+ * @Authors
  * Mario Gliwa s18866
  * Karol Skwierawski s18497
  *
@@ -27,7 +28,7 @@ import com.company.Menu.TextColor;
 
 public class MainApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
 
         int swValue;
@@ -40,14 +41,21 @@ public class MainApp {
         System.out.println("|        1. 3DES encryption/decryption              |");
         System.out.println("|        2. AES encryption/decryption               |");
         System.out.println("|        3. DES encryption/decryption               |");
-        System.out.println("|        4. EXIT                                    |");
+        System.out.println("|        4. RES encryption/decryption               |");
+        System.out.println("|        5. EXIT                                    |");
         System.out.println("=====================================================");
         swValue = Keyin.inInt(TextColor.GREEN + " Select option: ");
 
         // Switch construct
         switch (swValue) {
             case 1:
+                String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "; // this is a text which will be encrypt and decrypt
 
+                byte[] codedtext = new TripleDES().encrypt(text);
+                String decodedtext = new TripleDES().decrypt(codedtext);
+                System.out.println(text);
+                System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
+                System.out.println(decodedtext); // This correctly shows "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
                 break;
             case 2:
                 final String secretKey = "ssshhhhhhhhhhh!!!!";
@@ -61,7 +69,7 @@ public class MainApp {
                 System.out.println(decryptedString);
                 break;
             case 3:
-                String text = "123456ABCD1325361";
+                /* String text = "123456ABCD1325361";
                 String key = "AABB09182736CCDD";
 
                 DES cipher = new DES();
@@ -77,7 +85,9 @@ public class MainApp {
                 break;
             default:
                 System.out.println("Invalid selection");
-                break; // This break is not really necessary
+                break; // This break is not really
+
+                 */
         }
 
 
