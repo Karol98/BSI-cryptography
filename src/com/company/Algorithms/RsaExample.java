@@ -7,6 +7,12 @@ import java.util.Base64;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * Source: https://gist.github.com/nielsutrecht/855f3bef0cf559d8d23e94e2aecd4ede
+ * @Author: Karol Skwierawski s18497
+ *  RSA asymmetric
+ */
+
 public class RsaExample {
     public static KeyPair generateKeyPair() throws Exception {
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
@@ -16,9 +22,11 @@ public class RsaExample {
         return pair;
     }
 
+    /**
+     * Generating RSA Public Private Key
+     */
     public static KeyPair getKeyPairFromKeyStore() throws Exception {
-        //Generated with:
-        //  keytool -genkeypair -alias mykey -storepass s3cr3t -keypass s3cr3t -keyalg RSA -keystore keystore.jks
+
 
         InputStream ins = RsaExample.class.getResourceAsStream("/keystore.jks");
 
@@ -36,6 +44,9 @@ public class RsaExample {
         return new KeyPair(publicKey, privateKey);
     }
 
+    /**
+     * RSA Encryption In Java
+     */
     public static String encrypt(String plainText, PublicKey publicKey) throws Exception {
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -45,6 +56,10 @@ public class RsaExample {
         return Base64.getEncoder().encodeToString(cipherText);
     }
 
+    /**
+     *
+     * RSA Decryption In Java
+     */
     public static String decrypt(String cipherText, PrivateKey privateKey) throws Exception {
         byte[] bytes = Base64.getDecoder().decode(cipherText);
 
@@ -74,7 +89,7 @@ public class RsaExample {
         return publicSignature.verify(signatureBytes);
     }
 
-    public static void main(String... argv) throws Exception {
+    public static void main() throws Exception {
         //First generate a public/private key pair
         KeyPair pair = generateKeyPair();
         //KeyPair pair = getKeyPairFromKeyStore();

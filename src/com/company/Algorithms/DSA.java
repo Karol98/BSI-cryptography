@@ -11,8 +11,10 @@ import java.util.Scanner;
  * source:https://www.tutorialspoint.com/java_cryptography/java_cryptography_creating_signature.htm
  */
 public class DSA {
-    public static void main(String args[]) throws Exception {
-        //Accepting text from user
+    public static void main() throws Exception {
+        /**
+        Accepting text from user
+        */
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter some text");
         String msg = sc.nextLine();

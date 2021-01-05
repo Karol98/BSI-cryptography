@@ -1,29 +1,25 @@
 package com.company;
 
-import com.company.Algorithms.AES;
-import com.company.Algorithms.DES;
-import com.company.Algorithms.TripleDES;
+import com.company.Algorithms.*;
 import com.company.Menu.Keyin;
 import com.company.Menu.TextColor;
 
 /**
- * @Authors
- * Mario Gliwa s18866
+ * @Authors Mario Gliwa s18866
  * Karol Skwierawski s18497
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * DES - is a block cipher algorithm that takes plain text in blocks of 64 bits and converts them to ciphertext using
  * keys of 48 bits. It is a symmetric key algorithm, which means that the same key is used for encrypting and decrypting data
- *
+ * <p>
  * 3DES - Triple DES is a encryption technique which uses three instance of DES on same plain text. It uses there different
  * types of key choosing technique in first all used keys are different and in second two keys are same and one ise different and
  * in third all keys are same.
- *
+ * <p>
  * AES - AES is block cipher capable of handling 128 bit blocks, using keys sized at 128, 192, and 256 bits.
  * Each cipher encrypts and decrypts data in blocks of 128 bits using cryptographic keys of 128-, 192- and 256-bits, respectively.
  * It uses the same key for encrypting and decrypting, so the sender and the receiver must both know — and use — the same secret key.
- *
  */
 
 public class MainApp {
@@ -41,56 +37,36 @@ public class MainApp {
         System.out.println("|        1. 3DES encryption/decryption              |");
         System.out.println("|        2. AES encryption/decryption               |");
         System.out.println("|        3. DES encryption/decryption               |");
-        System.out.println("|        4. RES encryption/decryption               |");
-        System.out.println("|        5. EXIT                                    |");
+        System.out.println("|        4. RSA encryption/decryption               |");
+        System.out.println("|        5. RES encryption/decryption               |");
+        System.out.println("|        6. Race                                    |");
         System.out.println("=====================================================");
         swValue = Keyin.inInt(TextColor.GREEN + " Select option: ");
 
         // Switch construct
         switch (swValue) {
             case 1:
-                String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "; // this is a text which will be encrypt and decrypt
-
-                byte[] codedtext = new TripleDES().encrypt(text);
-                String decodedtext = new TripleDES().decrypt(codedtext);
-                System.out.println(text);
-                System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
-                System.out.println(decodedtext); // This correctly shows "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+                TripleDES.main();
                 break;
             case 2:
-                final String secretKey = "ssshhhhhhhhhhh!!!!";
-
-                String originalString = "BSI-Cryptography";
-                String encryptedString = AES.encrypt(originalString, secretKey) ;
-                String decryptedString = AES.decrypt(encryptedString, secretKey) ;
-
-                System.out.println(originalString);
-                System.out.println(encryptedString);
-                System.out.println(decryptedString);
+                AES.main();
                 break;
             case 3:
-                /* String text = "123456ABCD1325361";
-                String key = "AABB09182736CCDD";
-
-                DES cipher = new DES();
-                System.out.println("Encryption:\n");
-                text = cipher.encrypt(text, key);
-                System.out.println(
-                        "\nCipher Text: " + text.toUpperCase() + "\n");
-                System.out.println("Decryption\n");
-                text = cipher.decrypt(text, key);
-                System.out.println(
-                        "\nPlain Text: "
-                                + text.toUpperCase());
+                DES.main();
                 break;
-            default:
-                System.out.println("Invalid selection");
-                break; // This break is not really
-
-                 */
+            case 4:
+                RsaExample.main();
+                break;
+            case 5:
+                DSA.main();
+                break;
+            case 6:
+                TripleDES.main();
+                AES.main();
+                RsaExample.main();
+                DSA.main();
+                break;
         }
-
-
     }
 
 }

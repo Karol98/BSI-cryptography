@@ -15,6 +15,18 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AES {
 
+    public static void main() {
+        final String secretKey = "ssshhhhhhhhhhh!!!!";
+
+        String originalString = "BSI-Cryptography";
+        String encryptedString = AES.encrypt(originalString, secretKey) ;
+        String decryptedString = AES.decrypt(encryptedString, secretKey) ;
+
+        System.out.println(originalString);
+        System.out.println(encryptedString);
+        System.out.println(decryptedString);
+    }
+
     private static SecretKeySpec secretKey;
     private static byte[] key;
 

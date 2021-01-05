@@ -5,8 +5,9 @@ package com.company.Algorithms;
  */
 
 public class DES {
-    /** CONSTANTS
-    Initial Permutation Table
+    /**
+     * CONSTANTS
+     * Initial Permutation Table
      */
     int[] IP = {58, 50, 42, 34, 26, 18,
             10, 2, 60, 52, 44, 36, 28, 20,
@@ -19,7 +20,7 @@ public class DES {
             37, 29, 21, 13, 5, 63, 55,
             47, 39, 31, 23, 15, 7};
     /**
-     Inverse Initial Permutation Table
+     * Inverse Initial Permutation Table
      */
     int[] IP1 = {40, 8, 48, 16, 56, 24, 64,
             32, 39, 7, 47, 15, 55,
@@ -33,7 +34,7 @@ public class DES {
             26, 33, 1, 41, 9, 49,
             17, 57, 25};
     /**
-     first key-hePermutation Table
+     * first key-hePermutation Table
      */
     int[] PC1 = {57, 49, 41, 33, 25,
             17, 9, 1, 58, 50, 42, 34, 26,
@@ -44,7 +45,7 @@ public class DES {
             53, 45, 37, 29, 21, 13, 5, 28,
             20, 12, 4};
     /**
-    second key-Permutation Table
+     * second key-Permutation Table
      */
     int[] PC2 = {14, 17, 11, 24, 1, 5, 3,
             28, 15, 6, 21, 10, 23, 19, 12,
@@ -52,9 +53,8 @@ public class DES {
             41, 52, 31, 37, 47, 55, 30, 40,
             51, 45, 33, 48, 44, 49, 39, 56,
             34, 53, 46, 42, 50, 36, 29, 32};
-
     /**
-    Expansion D-box Table
+     * Expansion D-box Table
      */
     int[] EP = {32, 1, 2, 3, 4, 5, 4,
             5, 6, 7, 8, 9, 8, 9, 10,
@@ -64,7 +64,7 @@ public class DES {
             24, 25, 26, 27, 28, 29, 28,
             29, 30, 31, 32, 1};
     /**
-    Straight Permutation Table
+     * Straight Permutation Table
      */
     int[] P = {16, 7, 20, 21, 29, 12, 28,
             17, 1, 15, 23, 26, 5, 18,
@@ -72,7 +72,7 @@ public class DES {
             27, 3, 9, 19, 13, 30, 6,
             22, 11, 4, 25};
     /**
-    S-box Table
+     * S-box Table
      */
     int[][][] sbox = {
             {{14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7},
@@ -111,8 +111,25 @@ public class DES {
     };
     int[] shiftBits = {1, 1, 2, 2, 2, 2, 2, 2,
             1, 2, 2, 2, 2, 2, 2, 1};
+
+    public static void main() {
+        String text = "123456ABCD1325361";
+        String key = "AABB09182736CCDD";
+
+        DES cipher = new DES();
+        System.out.println("Encryption:\n");
+        text = cipher.encrypt(text, key);
+        System.out.println(
+                "\nCipher Text: " + text.toUpperCase() + "\n");
+        System.out.println("Decryption\n");
+        text = cipher.decrypt(text, key);
+        System.out.println(
+                "\nPlain Text: "
+                        + text.toUpperCase());
+    }
+
     /**
-    hexadecimal to binary conversion
+     * hexadecimal to binary conversion
      */
     String hextoBin(String input) {
         int n = input.length() * 4;
@@ -122,8 +139,9 @@ public class DES {
             input = "0" + input;
         return input;
     }
+
     /**
-    binary to hexadecimal conversion
+     * binary to hexadecimal conversion
      */
     String binToHex(String input) {
         int n = (int) input.length() / 4;
@@ -133,9 +151,10 @@ public class DES {
             input = "0" + input;
         return input;
     }
+
     /**
-    per-mutate input hexadecimal
-    according to specified sequence
+     * per-mutate input hexadecimal
+     * according to specified sequence
      */
     String permutation(int[] sequence, String input) {
         String output = "";
@@ -145,12 +164,13 @@ public class DES {
         output = binToHex(output);
         return output;
     }
+
     /**
-    xor 2 hexadecimal strings
-     hexadecimal to decimal(base 10)
-     hexadecimal to decimal(base 10)
-     decimal to hexadecimal
-     prepend 0's to maintain length
+     * xor 2 hexadecimal strings
+     * hexadecimal to decimal(base 10)
+     * hexadecimal to decimal(base 10)
+     * decimal to hexadecimal
+     * prepend 0's to maintain length
      */
     String xor(String a, String b) {
         long t_a = Long.parseUnsignedLong(a, 16);
@@ -161,8 +181,9 @@ public class DES {
             a = "0" + a;
         return a;
     }
+
     /**
-    left Circular Shifting bits
+     * left Circular Shifting bits
      */
     String leftCircularShift(String input, int numBits) {
         int n = input.length() * 4;
@@ -174,8 +195,9 @@ public class DES {
             input = permutation(perm, input);
         return input;
     }
+
     /**
-    preparing 16 keys for 16 rounds
+     * preparing 16 keys for 16 rounds
      */
     String[] getKeys(String key) {
         String keys[] = new String[16];
@@ -191,8 +213,9 @@ public class DES {
         }
         return keys;
     }
+
     /**
-    s-box lookup
+     * s-box lookup
      */
     String sBox(String input) {
         String output = "";
@@ -236,9 +259,9 @@ public class DES {
     }
 
     /**
-     *      * @param plainText - text user input
-     *      * @param key - generater random key
-     *      * @return - encrypted text
+     * * @param plainText - text user input
+     * * @param key - generater random key
+     * * @return - encrypted text
      */
 
     public String encrypt(String plainText, String key) {
@@ -272,9 +295,8 @@ public class DES {
     }
 
     /**
-     *
      * @param plainText - text user input
-     * @param key - generater random key
+     * @param key       - generater random key
      * @return - decrypted text
      */
     public String decrypt(String plainText, String key) {

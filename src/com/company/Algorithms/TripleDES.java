@@ -17,7 +17,15 @@ public class TripleDES {
      * @param args the command line arguments
      * @throws Exception
      */
+    public static void main() throws Exception {
+        String text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "; // this is a text which will be encrypt and decrypt
 
+        byte[] codedtext = new TripleDES().encrypt(text);
+        String decodedtext = new TripleDES().decrypt(codedtext);
+        System.out.println(text);
+        System.out.println(codedtext); // this is a byte array, you'll just see a reference to an array
+        System.out.println(decodedtext); // This correctly shows "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+    }
 
     /***
      * method which encrypting text
